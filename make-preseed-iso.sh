@@ -5,7 +5,11 @@ if [[ -z "$IN_ISO" ]]
 then
   echo "You must provide ISO file"
 else
-  OUT_ISO="${IN_ISO/netinst/unattended}"
+  if [[ $IN_ISO != *netinst* ]]; then
+    OUT_ISO="${IN_ISO%.*}-unattended.${IN_ISO##*.}"
+  else
+    OUT_ISO="${IN_ISO/netinst/unattended}"
+  fi
   echo "Extracting ISO"
   xorriso -osirrox on -indev "$IN_ISO" -extract / isofiles/
   
