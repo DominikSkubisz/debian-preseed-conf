@@ -21,9 +21,9 @@ else
   chmod -w -R isofiles/install.amd/
 
   echo "Edit boot menu *.cfg files"
-  chmod +w ./isofiles/isolinux/isolinux.cfg
-  sudo sed -i '$d' ./isofiles/isolinux/isolinux.cfg
-  chmod -w ./isofiles/isolinux/isolinux.cfg
+  chmod +w -R ./isofiles/isolinux/
+  sed -i '$d' ./isofiles/isolinux/isolinux.cfg
+  chmod -w -R ./isofiles/isolinux/
   #vim ./isofiles/boot/grub/grub.cfg
 
   echo "Generate MD5 sum"
@@ -39,5 +39,6 @@ else
     -no-emul-boot -boot-load-size 4 -boot-info-table -o "$OUT_ISO" isofiles
 
   echo "Cleaning after install"
-  sudo rm -Rf isofiles
+  chmod +w -R ./isofiles/
+  rm -Rf isofiles
 fi
