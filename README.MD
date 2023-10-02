@@ -20,9 +20,7 @@ Instrukcje użycia
 
 ## Dostosowywanie pliku preseed.cfg
 
-Plik preseed można dostosować do swoich potrzeb, zmieniając różne opcje i parametry. Dokumentacja systemu Debian zawiera szczegółowe informacje na temat dostępnych opcji i ich składni.
+Plik preseed można dostosować do swoich potrzeb, korzystając z dołączonego konfiguratora, konfigurator ten obsługuję podstawowe pytania pojawiające się podczas procesu instalacji (pominięto konfigurację WiFi), dla skorzystania z dodatkowych opcji odsyłam do dokumentacji. Dokumentacja systemu Debian zawiera szczegółowe informacje na temat dostępnych opcji i ich składni.
 
-
-Więcej informacji można znaleźć w oficjalnej dokumentacji Debian: Debian Preseeding
-Wsparcie
+Więcej informacji można znaleźć w oficjalnej dokumentacji Debian: Debian Preseeding Wsparcie
 
