@@ -73,6 +73,28 @@ class LabeledControl:
     def _update_checkbox(self):
         self.value = bool(self.checkbox_value.get())
 
+class MultiselectWidget(LabeledControl):
+    def __init__(self, label_text, values):
+        super().__init__(label_text, values)
+        self.selected_values = []
+
+    def show(self, frame, row):
+        self.label = tk.Label(frame, text=self.label_text, width=20)
+        self.label.grid(row=row, column=0)
+
+        listbox_height = min(10, len(self.value))  # Limit the max height to 10 for better UI
+        self.control = tk.Listbox(frame, selectmode=tk.MULTIPLE, height=listbox_height)
+        for value in self.value:
+            self.control.insert(tk.END, value)
+        self.control.grid(row=row, column=1, sticky=tk.W)
+        self.control.bind('<<ListboxSelect>>', self._update_selected_values)
+
+    def _update_selected_values(self, event):
+        selected_indices = self.control.curselection()
+        self.selected_values = [self.value[index] for index in selected_indices]
+
+    def get_selected_values(self):
+        return self.selected_values
 
 class GroupFrame:
     def __init__(self, group_name, state=True):
@@ -156,7 +178,10 @@ class App(tk.Tk):
         self.widgets[9].add(LabeledControl('Scan failed', False))
 # Package selection
         self.widgets.append(GroupFrame('Package selection'))
-        self.widgets[10].add(LabeledControl('Tasksel Package install', 'standard'))
+        #TODO: multiselect package selection
+        #self.widgets[10].add(LabeledControl('Tasksel Package install', 'standard'))
+        self.widgets[10].add(MultiselectWidget('Tasksel Package install', ['standard', 'gnome-desktop', 'xfce-desktop', 'kde-desktop', 'lxde-desktop', 'web-server', 'ssh-server']))
+      
 # Grub bootloader setup
         self.widgets.append(GroupFrame('Grub bootloader setup'))
         self.widgets[11].add(LabeledControl('Install grub on drive', True))
@@ -189,7 +214,10 @@ class App(tk.Tk):
             else:
                 self.comment_out.append('')
             for j in self.widgets[i].elements:
-                if isinstance(j.value, bool):
+                if isinstance(j, MultiselectWidget):
+                    selected_values = j.get_selected_values()
+                    self.answers.append(' '.join(selected_values))
+                elif isinstance(j.value, bool):
                     self.answers.append(str(j.value).lower())
                 else:
                     self.answers.append(j.control.get())
@@ -243,4 +271,3 @@ if __name__ == "__main__":
     app = App()
     app.title("D-I pressed generator")
     app.mainloop()
-
