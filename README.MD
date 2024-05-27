@@ -1,4 +1,4 @@
-# Konfiguracja Debian Preseed
+# Kreator Debian Preseed
 
 ## Wprowadzenie
 
