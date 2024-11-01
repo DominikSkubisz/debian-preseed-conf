@@ -2,7 +2,7 @@
 
 ## Wprowadzenie
 
-Ten projekt zawiera przykładową konfigurację pliku preseed do automatycznego instalowania systemu Debian. Debian Preseed to narzędzie, które umożliwia automatyczną instalację systemu Debian bez interakcji z użytkownikiem. Możesz dostosować ten plik preseed.cfg do własnych potrzeb, aby stworzyć spersonalizowaną konfigurację instalacji systemu Debian.
+Ten projekt to konfigurator pliku preseed do automatycznego instalowania systemu Debian. Debian Preseed to narzędzie, które umożliwia automatyczną instalację systemu Debian bez interakcji z użytkownikiem. Możesz dostosować ten plik preseed.cfg do własnych potrzeb, aby stworzyć spersonalizowaną konfigurację instalacji systemu Debian.
 
 ## Wymagania
 
